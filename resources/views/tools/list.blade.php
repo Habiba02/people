@@ -75,7 +75,7 @@
             </select>
           </div>
           <div class="col-xs-2">
-            <label for="month" class="control-label">Month</label>
+            <label for="month" class="control-label">Week</label>
             <select class="form-control select2" id="month" name="month" data-placeholder="Select a month">
               @foreach(config('select.month_names') as $key => $value)
               <option value="{{ $key }}">
@@ -472,12 +472,12 @@
       months_name = [
         @foreach(config('select.month') as $key => $month)
           '{{$month}}'
-          @if($month != 'DEC'),@endif
+          @if($month != 'Week 52'),@endif
         @endforeach
       ];
       header_months = [];
       
-      for (let index = parseInt(month[0],10); index <= 12; index++) {
+      for (let index = parseInt(month[0],10); index <= 52; index++) {
         this_year = parseInt(year[0],10);
         months_from_selection.push(months_name[index-1]+' '+this_year.toString().substring(2));
         header_months.push({'year':this_year,'month':index});
@@ -493,7 +493,7 @@
       //console.log(months_from_selection);
       
       // We change the title of the months as it varies in function of the year and month selected
-      for (let index = 1; index <= 12; index++) {
+      for (let index = 1; index <= 52; index++) {
           //console.log(month);
           $('#table_month_'+index).empty().html(months_from_selection[index-1]);
         }
